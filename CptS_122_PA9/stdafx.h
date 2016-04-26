@@ -15,6 +15,7 @@
 
 #include <map>
 #include <iostream>
+#include <sstream>
 #include <cassert>
 
 //includes for file handling, strings, and pow

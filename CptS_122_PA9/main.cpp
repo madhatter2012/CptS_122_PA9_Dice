@@ -8,17 +8,19 @@ using namespace std;
 int main(int argc, char** argv)
 {
 
+	/*
 	RenderWindow renderWindow(VideoMode(800, 900), "War Games");
 
 	Event event; //Event File
 
 	Clock clock; //clock counting
-
+	*/
 
 	VisibleDiceObject dice;
-
+	dice.createWindow();
 	dice.rollDice();
-	
+
+	/*	
 	Texture texture;
 	if (!texture.loadFromFile("dice2.jpg"))
 	{
@@ -36,7 +38,7 @@ int main(int argc, char** argv)
 	
 	Sprite sprite2(texture2);
 	sprite2.setPosition(5, 5);
-	
+	*/
 
 
 	/*
@@ -58,6 +60,7 @@ int main(int argc, char** argv)
 		renderWindow.getSize().y/2 - (bounds.top + bounds.height / 2));
 		*/
 
+	/*
 	//checks for more events until window is closed
 	while (renderWindow.isOpen())
 	{
@@ -77,6 +80,7 @@ int main(int argc, char** argv)
 		renderWindow.draw(sprite);
 		renderWindow.draw(sprite2);
 		renderWindow.display();
+		*/
 	}
 	//system("pause");
 	return 0;

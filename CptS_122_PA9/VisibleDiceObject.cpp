@@ -1,7 +1,7 @@
 #include "VisibleDiceObject.h"
 
 //constructor
-VisibleDiceObject::VisibleDiceObject(int num)
+VisibleDiceObject::VisibleDiceObject(Texture texture, Sprite sprite, string jpg, string dice_Image, int num)
 {
 	//nada?
 }
@@ -19,21 +19,9 @@ void VisibleDiceObject::rollDice()
 	{
 		num = randomNumber();
 		diceMenu(num);
+
+
 	}
-}
-
-//file loading function
-int VisibleDiceObject::loadDiceFile(int num)
-{
-	Texture texture;
-	if (!texture.loadFromFile("dice.jpg"))
-	{
-		return 42;
-	}
-
-	Sprite sprite(texture);
-	sprite.setPosition(0, 0);
-
 }
 
 //random Number generating function
@@ -67,10 +55,56 @@ void VisibleDiceObject::diceMenu(int num)
 	case 6:
 		loadDiceFile(num);
 		break;
-
 	}
 }
 
+//file loading function
+string VisibleDiceObject::loadDiceFile(int num)
+{
+	Texture texture;
+	//std::ostringstream dice_Image;
+	//dice_Image << num << ".jpg";
+
+	string dice_Image = to_string(num) + jpg;
+	
+	if (!texture.loadFromFile(dice_Image))
+	{
+	//	return 42;
+	}
+
+	dice_Image;
+
+}
+
+//window creation
+int VisibleDiceObject::windowCreation()
+{
+	RenderWindow renderWindow(VideoMode(800, 900), "War Games");
+
+Event event; //Event File
+
+Clock clock; //clock counting
+
+Sprite sprite(texture);
+sprite.setPosition(0, 0);
+
+while (renderWindow.isOpen())
+{
+	//Event event;
+	while (renderWindow.pollEvent(event))
+	{
+
+		if (event.type == Event::EventType::Closed)
+			renderWindow.close();
+	}
+
+	//cout << "Elapsed time since previous frame (microseconds): " << clock.getElapsedTime().asMicroseconds() << endl;
+	//clock.restart();
+
+	renderWindow.clear(Color::White);
+	//renderWindow.draw(text); //drawing text
+	//renderWindow.draw(sprite);
+	renderWindow.display();
 
 
 //

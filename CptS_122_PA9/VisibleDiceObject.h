@@ -12,17 +12,19 @@ using namespace sf;
 class VisibleDiceObject
 {
 public:
-	VisibleDiceObject(int num = 0);
+	VisibleDiceObject(Texture texture, Sprite sprite, string = "jpg", string dice_Image = "", int num = 0);
 	~VisibleDiceObject();
 
 	void rollDice();
 
-	int loadDiceFile(int num);
+	string loadDiceFile(int num);
 
 	int randomNumber();
 
 	void diceMenu(int num);
 	
+	int windowCreation();
+
 	//void SetPosition(float x, float y);
 
 private:
@@ -30,6 +32,10 @@ private:
 	//Image _image;
 	//string _filename;
 	//bool _isLoaded;
+	Texture texture;
+	Sprite sprite;
 	int num = 0;
+	string jpg = "jpg";
+	string dice_Image = "";
 };
 
