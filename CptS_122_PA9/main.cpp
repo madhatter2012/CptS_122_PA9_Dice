@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	*/
 
 	VisibleDiceObject dice;
-	dice.createWindow();
+	//dice.createWindow();
 	dice.rollDice();
 
 	/*	
@@ -29,15 +29,6 @@ int main(int argc, char** argv)
 
 	Sprite sprite(texture);
 	sprite.setPosition(0, 0);
-	
-	Texture texture2;
-	if (!texture2.loadFromFile("WarGamesImage1.jpg"))
-	{
-		return 42;
-	}
-	
-	Sprite sprite2(texture2);
-	sprite2.setPosition(5, 5);
 	*/
 
 
@@ -80,8 +71,10 @@ int main(int argc, char** argv)
 		renderWindow.draw(sprite);
 		renderWindow.draw(sprite2);
 		renderWindow.display();
-		*/
+		
 	}
+	*/
 	//system("pause");
+
 	return 0;
 }

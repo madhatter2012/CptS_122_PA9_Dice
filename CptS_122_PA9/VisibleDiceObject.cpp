@@ -1,7 +1,7 @@
 #include "VisibleDiceObject.h"
 
 //constructor
-VisibleDiceObject::VisibleDiceObject(Texture texture, Sprite sprite, string jpg, string dice_Image, int num)
+VisibleDiceObject::VisibleDiceObject(string newJpg, string newDice_Image, int newNum)
 {
 	//nada?
 }
@@ -15,98 +15,131 @@ VisibleDiceObject::~VisibleDiceObject()
 //primary dice function called from main or wrapper
 void VisibleDiceObject::rollDice()
 {
-	for (int i = 0; i < 2; i++)
+	for (int i = 1; i < 3; i++)
 	{
-		num = randomNumber();
-		diceMenu(num);
+		if (i == 1)
+		{
+			mNum = randomNumber();
+			Texture& temp1 = diceMenu(mNum);
+		}
 
+		else if (i == 2)
+		{
+			mNum = randomNumber();
+			Texture& temp2 = diceMenu(mNum);
+		}
 
+		else
+			break;
 	}
+	createWindow(temp1, temp2);
 }
 
 //random Number generating function
 int VisibleDiceObject::randomNumber()
 {
 	srand(time(NULL));
-	num = rand() % 11 + 2;
-	return num;
+	mNum = rand() % 11 + 2;
+	return mNum;
 }
 
 //Switch Case Menu for Dice file loading choices
-void VisibleDiceObject::diceMenu(int num)
+ Texture& VisibleDiceObject::diceMenu(int mNum)
 {
-	switch (num)
+	switch (mNum)
 	{
 	case 1:
-		loadDiceFile(num);
+		Texture& temp = loadDiceFile(mNum);
 		break;
 	case 2:
-		loadDiceFile(num);
+		loadDiceFile(mNum);
 		break;
 	case 3:
-		loadDiceFile(num);
+		loadDiceFile(mNum);
 		break;
 	case 4:
-		loadDiceFile(num);
+		loadDiceFile(mNum);
 		break;
 	case 5:
-		loadDiceFile(num);
+		loadDiceFile(mNum);
 		break;
 	case 6:
-		loadDiceFile(num);
+		loadDiceFile(mNum);
 		break;
+	case 7:
+		loadDiceFile(mNum);
+		break;
+	case 8:
+		loadDiceFile(mNum);
+		break;
+	case 9:
+		loadDiceFile(mNum);
+		break;
+	case 10:
+		loadDiceFile(mNum);
+		break;
+	case 11:
+		loadDiceFile(mNum);
+		break;
+	case 12:
+		loadDiceFile(mNum);
+		break;
+
+
 	}
 }
 
 //file loading function
-string VisibleDiceObject::loadDiceFile(int num)
+sf::Texture& VisibleDiceObject::loadDiceFile(int newNum)
 {
-	Texture texture;
-	//std::ostringstream dice_Image;
-	//dice_Image << num << ".jpg";
+	Texture mTexture;
 
-	string dice_Image = to_string(num) + jpg;
+	string dice_Image = to_string(newNum) + mJpg;
 	
-	if (!texture.loadFromFile(dice_Image))
+	if (!mTexture.loadFromFile(dice_Image))
 	{
-	//	return 42;
+		//return 42;
 	}
 
-	dice_Image;
-
+	 return mTexture;
 }
 
 //window creation
-int VisibleDiceObject::windowCreation()
+int VisibleDiceObject::createWindow(Texture& newTexture1, Texture& newTexture2)
 {
 	RenderWindow renderWindow(VideoMode(800, 900), "War Games");
 
-Event event; //Event File
+	Event event; //Event File
 
-Clock clock; //clock counting
+	Clock clock; //clock counting
 
-Sprite sprite(texture);
-sprite.setPosition(0, 0);
+	Sprite mSprite1(newTexture1);
+	mSprite.setPosition(0, 0);
 
-while (renderWindow.isOpen())
-{
-	//Event event;
-	while (renderWindow.pollEvent(event))
+
+	Sprite mSprite2(newTexture2);
+	mSprite.setPosition(25, 25);
+
+	while (renderWindow.isOpen())
 	{
+		//Event event;
+		while (renderWindow.pollEvent(event))
+		{
 
-		if (event.type == Event::EventType::Closed)
-			renderWindow.close();
+			if (event.type == Event::EventType::Closed)
+				renderWindow.close();
+		}
+
+		//cout << "Elapsed time since previous frame (microseconds): " << clock.getElapsedTime().asMicroseconds() << endl;
+		//clock.restart();
+
+		renderWindow.clear(Color::White);
+		renderWindow.draw(mSprite1);
+		renderWindow.draw(mSprite2);
+		renderWindow.display();
+
 	}
-
-	//cout << "Elapsed time since previous frame (microseconds): " << clock.getElapsedTime().asMicroseconds() << endl;
-	//clock.restart();
-
-	renderWindow.clear(Color::White);
-	//renderWindow.draw(text); //drawing text
-	//renderWindow.draw(sprite);
-	renderWindow.display();
-
-
+}
 //
 //
 //Texture texture2;
